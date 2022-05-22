@@ -9,6 +9,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 import dj_database_url
+import boto3
+from botocore.config import Config
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -172,7 +174,16 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-AWS_DEFAULT_REGION='eu-west-2'
+my_config = Config(
+    region_name='eu-west-2',
+    signature_version='v4',
+    retries={
+        'max_attempts': 10,
+        'mode': 'standard'
+    }
+)
+
+client = boto3.client('kinesis', config=my_config)
 
 if 'USE_AWS' in os.environ:
     AWS_STORAGE_BUCKET_NAME = 'tbs-boutique-ado',
