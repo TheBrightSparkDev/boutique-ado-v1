@@ -2,19 +2,7 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
-import boto3
-from botocore.config import Config
 
-my_config = Config(
-    region_name='eu-west-2',
-    signature_version='v4',
-    retries={
-        'max_attempts': 10,
-        'mode': 'standard'
-    }
-)
-
-client = boto3.client('kinesis', config=my_config)
 
 def main():
     """Run administrative tasks."""
