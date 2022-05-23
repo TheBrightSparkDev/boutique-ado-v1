@@ -25,7 +25,6 @@ DEBUG = 'DEVELOPMENT' in os.environ
 
 ALLOWED_HOSTS = ['tbs-boutique-ado.herokuapp.com', 'localhost', '8080-thebrightsp-boutiqueado-pab67pa54va.ws-eu45.gitpod.io']
 
-
 # Application definition
 
 INSTALLED_APPS = [
